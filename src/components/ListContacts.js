@@ -1,4 +1,8 @@
-const ListContacts = ({ contacts }) => {
+const ListContacts = ({ contacts, removeContact }) => {
+	const handleRemoveContact = (contact) => {
+		removeContact(contact);
+	};
+
 	return (
 		<ol className="contact-list">
 			{contacts.map((contact) => (
@@ -13,7 +17,12 @@ const ListContacts = ({ contacts }) => {
 						<p className="contact-name">{contact.name}</p>
 						<p className="contact-handle">{contact.handle}</p>
 					</div>
-					<button className="contact-remove">Remove</button>
+					<button
+						className="contact-remove"
+						onClick={() => handleRemoveContact(contact)}
+					>
+						Remove
+					</button>
 				</li>
 			))}
 		</ol>
