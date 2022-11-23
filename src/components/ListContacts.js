@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const ListContacts = ({ contacts, removeContact }) => {
 	const handleRemoveContact = (contact) => {
 		removeContact(contact);
@@ -30,3 +32,8 @@ const ListContacts = ({ contacts, removeContact }) => {
 };
 
 export { ListContacts };
+
+ListContacts.propTypes = {
+	contacts: PropTypes.array.isRequired,
+	removeContact: PropTypes.func.isRequired,
+};
