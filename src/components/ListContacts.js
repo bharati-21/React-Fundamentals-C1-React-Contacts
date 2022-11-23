@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
-const ListContacts = ({ contacts, removeContact }) => {
+const ListContacts = ({ contacts, removeContact, onNavigate }) => {
 	const [searchText, setSearchText] = useState("");
 
 	const handleRemoveContact = (contact) => {
@@ -37,6 +38,9 @@ const ListContacts = ({ contacts, removeContact }) => {
 					value={searchText}
 					onChange={handleSearchTextChange}
 				/>
+				<Link to="/create" className="add-contact" onClick={onNavigate}>
+					Add Contact
+				</Link>
 			</div>
 			{filteredContacts.length !== contacts.length && (
 				<div className="showing-contacts">
@@ -78,4 +82,5 @@ export { ListContacts };
 ListContacts.propTypes = {
 	contacts: PropTypes.array.isRequired,
 	removeContact: PropTypes.func.isRequired,
+	onNavigate: PropTypes.func.isRequired,
 };
