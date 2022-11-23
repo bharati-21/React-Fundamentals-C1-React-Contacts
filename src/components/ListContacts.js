@@ -9,7 +9,7 @@ const ListContacts = ({ contacts, removeContact }) => {
 	};
 
 	const handleSearchTextChange = (e) => {
-        const text = e.target.value;
+		const text = e.target.value;
 		setSearchText(text.trim());
 	};
 
