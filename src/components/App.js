@@ -7,7 +7,6 @@ import { Route, Routes } from "react-router-dom";
 
 const App = () => {
 	const [contacts, setContacts] = useState([]);
-	const [screen, setScreen] = useState("list");
 
 	const fetchContacts = async () => {
 		const response = await ContactsAPI.getAll();
@@ -25,6 +24,11 @@ const App = () => {
 		);
 	};
 
+	const createContact = async (contact) => {
+		const response = await ContactsAPI.create(contact);
+		setContacts((prevContacts) => [...prevContacts, response]);
+	};
+
 	return (
 		<Routes>
 			<Route
@@ -33,13 +37,13 @@ const App = () => {
 					<ListContacts
 						contacts={contacts}
 						removeContact={removeContact}
-						onNavigate={() => {
-							setScreen("create");
-						}}
 					/>
 				}
 			/>
-			<Route path="/create" element={<CreateContact />} />
+			<Route
+				path="/create"
+				element={<CreateContact createContact={createContact} />}
+			/>
 		</Routes>
 	);
 };
